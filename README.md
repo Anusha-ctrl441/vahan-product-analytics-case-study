@@ -1,4 +1,3 @@
-# vahan-product-analytics-case-study
 # Vahan Product Analytics Case Study
 
 ### Lead Funnel Analysis | SQL | Python | Predictive Analytics
