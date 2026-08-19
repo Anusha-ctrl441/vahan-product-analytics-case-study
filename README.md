@@ -79,15 +79,3 @@ Threshold analysis also demonstrated the trade-off between identifying more pote
 - Funnel analysis
 - Conversion calculations
 
----
-
-## Repository Structure
-
-```text
-Vahan_Product_Analytics_Case_Study/
-│
-├── Vahan_Case_Study_Analysis.ipynb
-├── q2_aggregation.sql
-├── q2_aggregate_output.csv
-├── requirements.txt
-└── README.md
