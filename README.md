@@ -10,17 +10,17 @@ An end-to-end analytics case study analyzing **18,198 leads** to understand lead
 
 Analyze the lead funnel to answer three key questions:
 
-- Which lead sources generate the strongest **FT conversion**?
-- Where are the biggest drop-offs across the **lead → attempt → connection → interest → FT** funnel?
-- Can early lead behavior be used to **predict FT after upload**?
+- Which lead sources generate the strongest FT conversion?
+- Where are the biggest drop-offs across the lead funnel?
+- Can early lead behavior be used to predict FT after upload?
 
 ---
 
 ## Key Findings
 
-### Lead Source Performance
+### 1. Lead Source Performance
 
-Using SQL aggregation, lead sources were ranked by FT conversion rate.
+Lead sources were analyzed and ranked using SQL aggregation and FT conversion rate.
 
 | Lead Source | Leads | FT | FT Conversion |
 |---|---:|---:|---:|
@@ -29,52 +29,63 @@ Using SQL aggregation, lead sources were ranked by FT conversion rate.
 | PreOb-Ob Fees Paid (Set 1) | 1,483 | 7 | **0.47%** |
 | PreOb-Ob Fees Paid (Set 2) | 1,558 | 7 | **0.45%** |
 
-The dataset contained **54 FT outcomes**, making FT a highly imbalanced target.
+The dataset contained **54 FT outcomes out of 18,198 leads**, making FT a highly imbalanced target.
 
-### Predictive Modeling
+### 2. Predictive Modeling
 
-Built a classification model to identify leads likely to achieve FT after upload.
+A Random Forest classification model was developed to identify factors associated with FT after upload.
 
-Key predictive signals included:
+The initial model identified the following as strong predictive signals:
 
-- **OB after upload**
-- **Upload-to-first-attempt timing**
-- **Attempt per lead**
-- **Upload day**
-- **Attempted / Connected activity**
-- **Lead source**
+- OB after upload
+- Upload-to-first-attempt timing
+- Attempt per lead
+- Upload day
+- Attempted and connected activity
+- Lead source
 
-The initial model achieved a **ROC-AUC of 0.993**. Threshold analysis highlighted the difficulty of predicting a highly rare FT outcome and the limitations of relying on accuracy alone.
+The initial model achieved a **ROC-AUC of 0.993**. Further analysis using a leakage-conscious feature set produced a more conservative ROC-AUC of **0.688**, highlighting the difficulty of predicting a highly rare FT outcome using only earlier-stage lead information.
+
+Threshold analysis also demonstrated the trade-off between identifying more potential FT leads and maintaining precision.
 
 ---
 
-## Tools & Techniques
+## Tools and Techniques
 
-**Python**
-- Pandas & NumPy
+### Python
+
+- Pandas
+- NumPy
 - Scikit-learn
 - Feature engineering
 - Train/test splitting
+- Random Forest classification
 - Classification metrics
 - Feature importance
 - Threshold analysis
 
-**SQL / MySQL**
+### SQL / MySQL
+
 - Data loading and table creation
-- Aggregation with `GROUP BY`
+- Aggregation using GROUP BY
 - Funnel metrics
 - Conversion-rate analysis
+- Cohort-level analysis
 
-**Excel**
+### Excel
+
 - Pivot tables
-- Funnel analysis
 - Exploratory analysis
+- Funnel analysis
+- Conversion calculations
 
 ---
 
 ## Repository Structure
 
 ```text
+Vahan_Product_Analytics_Case_Study/
+│
 ├── Vahan_Case_Study_Analysis.ipynb
 ├── q2_aggregation.sql
 ├── q2_aggregate_output.csv
